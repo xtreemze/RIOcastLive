@@ -204,4 +204,9 @@ $( 'document' ).ready( function () {
 		updatePeriod: 20, //seconds
 		showLimit: 20
 	} );
+	if ( window.audioContext || window.webkitAudioContext ) {
+		console.log( "audioContext Supported" );
+	} else {
+		$( '#vis' ).hide();
+	}
 } );
