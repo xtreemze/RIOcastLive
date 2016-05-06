@@ -110,8 +110,6 @@ context = new( window.AudioContext || window.webkitAudioContext )();
 analyser = context.createAnalyser();
 analyser.fftSize = 256;
 analyser.smoothingTimeConstant = 0.5;
-WIDTH = canvas.width;
-HEIGHT = canvas.height;
 //analyser.minDecibels = -90;
 //analyser.maxDecibels = -30;
 // draw the analyser to the canvas
@@ -123,57 +121,37 @@ HEIGHT = canvas.height;
 ██████  ██   ██ ██   ██  ███ ███
 */
 function freqAnalyser() {
-	analyser.fftSize = 256;
-	var bufferLength = analyser.frequencyBinCount;
-	console.log( bufferLength );
-	var dataArray = new Uint8Array( bufferLength );
-	canvasCtx.clearRect( 0, 0, WIDTH, HEIGHT );
-
-	function draw() {
-		drawVisual = requestAnimationFrame( draw );
-		analyser.getByteFrequencyData( dataArray );
-		canvasCtx.fillStyle = 'rgb(0, 0, 0)';
-		canvasCtx.fillRect( 0, 0, WIDTH, HEIGHT );
-		var barWidth = ( WIDTH / bufferLength ) * 2.5;
-		var barHeight;
-		var x = 0;
-		for ( var i = 0; i < bufferLength; i++ ) {
-			barHeight = dataArray[ i ];
-			canvasCtx.fillStyle = 'rgb(' + ( barHeight + 100 ) + ',50,50)';
-			canvasCtx.fillRect( x, HEIGHT - barHeight / 2, barWidth, barHeight / 2 );
-			x += barWidth + 1;
+	window.requestAnimationFrame( freqAnalyser );
+	var sum;
+	var average;
+	var bar_width;
+	var scaled_average;
+	var num_bars = 24;
+	data = new Uint8Array( 128 );
+	analyser.getByteFrequencyData( data );
+	if ( analyser ) {} else {
+		$( '#vis' ).html( data[ 0 ] );
+	}
+	// clear canvas
+	canvasCtx.clearRect( 0, 0, canvas.width, canvas.height );
+	var gradient = canvasCtx.createLinearGradient( 0, canvas.height, 0, 0 );
+	gradient.addColorStop( 0, "#28B62C" );
+	gradient.addColorStop( 0.8, "#F5D802" );
+	gradient.addColorStop( 1, "red" );
+	canvasCtx.fillStyle = gradient;
+	//DRAW Individual Bars
+	var bin_size = Math.floor( ( data.length - 40 ) / num_bars );
+	for ( var i = 0; i < num_bars; i++ ) {
+		sum = 0;
+		for ( var j = 0; j < bin_size; j++ ) {
+			sum += data[ ( i * bin_size ) + j ];
 		}
-	};
-	draw();
-};
-// function freqAnalyser() {
-// 	window.requestAnimationFrame( freqAnalyser );
-// 	var sum;
-// 	var average;
-// 	var bar_width;
-// 	var scaled_average;
-// 	var num_bars = 24;
-// 	data = new Uint8Array( 128 );
-// 	// clear canvas
-// 	canvasCtx.clearRect( 0, 0, canvas.width, canvas.height );
-// 	var gradient = canvasCtx.createLinearGradient( 0, canvas.height, 0, 0 );
-// 	gradient.addColorStop( 0, "#28B62C" );
-// 	gradient.addColorStop( 0.8, "#F5D802" );
-// 	gradient.addColorStop( 1, "red" );
-// 	canvasCtx.fillStyle = gradient;
-// 	//DRAW Individual Bars
-// 	var bin_size = Math.floor( ( data.length - 40 ) / num_bars );
-// 	for ( var i = 0; i < num_bars; i++ ) {
-// 		sum = 0;
-// 		for ( var j = 0; j < bin_size; j++ ) {
-// 			sum += data[ ( i * bin_size ) + j ];
-// 		}
-// 		average = sum / bin_size;
-// 		bar_width = canvas.width / num_bars;
-// 		scaled_average = ( average / 256 ) * canvas.height;
-// 		canvasCtx.fillRect( i * bar_width, canvas.height, bar_width / 1.1, -scaled_average );
-// 	}
-// }
+		average = sum / bin_size;
+		bar_width = canvas.width / num_bars;
+		scaled_average = ( average / 256 ) * canvas.height;
+		canvasCtx.fillRect( i * bar_width, canvas.height, bar_width / 1.1, -scaled_average );
+	}
+}
 /*
 ███    ██  █████  ██    ██ ██  ██████   █████  ████████ ██  ██████  ███    ██
 ████   ██ ██   ██ ██    ██ ██ ██       ██   ██    ██    ██ ██    ██ ████   ██
