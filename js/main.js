@@ -32,6 +32,13 @@ audioElement.controls = false;
 audioElement.autoplay = false;
 audioElement.crossOrigin = "anonymous";
 audioElement.id = 'a';
+/*
+ ██████  ██████  ███    ██ ████████ ██████   ██████  ██      ███████
+██      ██    ██ ████   ██    ██    ██   ██ ██    ██ ██      ██
+██      ██    ██ ██ ██  ██    ██    ██████  ██    ██ ██      ███████
+██      ██    ██ ██  ██ ██    ██    ██   ██ ██    ██ ██           ██
+ ██████  ██████  ██   ████    ██    ██   ██  ██████  ███████ ███████
+*/
 $( '#audio-visual' )[ 0 ].appendChild( audioElement );
 $( '#pause' ).click( function () {
 	audioElement.pause();
@@ -122,6 +129,9 @@ function freqAnalyser() {
 	var num_bars = 24;
 	data = new Uint8Array( 128 );
 	analyser.getByteFrequencyData( data );
+	if ( analyser ) {} else {
+		$( '#vis' ).html( data[ 0 ] );
+	}
 	// clear canvas
 	canvasCtx.clearRect( 0, 0, canvas.width, canvas.height );
 	var gradient = canvasCtx.createLinearGradient( 0, canvas.height, 0, 0 );
