@@ -15,8 +15,7 @@
 	<link rel="shortcut icon" href="http://radio.riocast.net/live/favicon.ico">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="css/main.min.css">
-</head>
+	<link rel="stylesheet" href="css/main.min.css"> </head>
 <!--
 	██████   ██████  ██████  ██    ██
 	██   ██ ██    ██ ██   ██  ██  ██
@@ -32,16 +31,10 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">
               Toggle navigation
-            </span>
-					<span class="icon-bar">
-            </span>
-					<span class="icon-bar">
-            </span>
-					<span class="icon-bar">
-            </span>
-				</button>
-				<img id="logo" alt="RIOcast Honduras" src="http://radio.riocast.net/live/favicon-96x96.png">
-			</div>
+            </span> <span class="icon-bar">
+            </span> <span class="icon-bar">
+            </span> <span class="icon-bar">
+            </span> </button> <img id="logo" alt="RIOcast Honduras" src="http://radio.riocast.net/live/favicon-96x96.png"> </div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li id="mp3" onclick="sourceChange('http://192.30.164.78:8000/rio')">
@@ -55,12 +48,10 @@
                 </strong> 160kbps</a>
 					</li>
 					<li role="separator" class="divider">
-						<hr>
-					</li>
+						<hr> </li>
 					<li> <a href="https://twitter.com/xtreemze">
                         @xtreemze
-                        </a>
-					</li>
+                        </a> </li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -78,28 +69,24 @@
 ██   ██ ██    ██ ██   ██ ██ ██    ██      ██  ██  ██      ██
 ██   ██  ██████  ██████  ██  ██████        ████   ██ ███████
 -->
-
 		<div id="vis" class="col-sm-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Audio Visualizado</h3>
-				</div>
+					<h3 class="panel-title">Audio Visualizado</h3> </div>
 				<div id="bottom" class="panel-body">
-					<canvas id="c" height=81 width=400>Your browser does not yet support audioElement.</canvas>
+					<canvas id="c" height="81" width="400">Your browser does not yet support audioElement.</canvas>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-6">
 			<div id="controlAudio" class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Control de audio</h3>
-				</div>
+					<h3 class="panel-title">Control de audio</h3> </div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-default btn-lg col-xs-6" id="play"> <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play</button>
 					<button type="button" class="btn btn-default btn-lg col-xs-6" id="pause"> <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
 					<div class="progress">
-						<div id="bar" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">Playback</span>
-						</div>
+						<div id="bar" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">Playback</span> </div>
 					</div>
 					<button type="button" class="btn btn-info btn-lg col-xs-12" id="reconnect"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reconnect</button>
 				</div>
