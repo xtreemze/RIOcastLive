@@ -2,48 +2,55 @@
 Author's custom styles
 ========================================================================== */
 
-
-.progress-bar, .active, .navbar-nav li a {
-    transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+.active,
+.navbar-nav li a,
+.progress-bar {
+	transition: all 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
-.progress{
-    width:100%;
-    margin-top: 4em;
-    margin-bottom: 0.7em;
+.progress {
+	width        : 100%;
+	margin-top   : 4em;
+	margin-bottom: 0.7em;
 }
 
-.time, th{
-    text-align: center;
+.time,
+th {
+	text-align: center;
 }
 
-.programa{
-    text-align: left;
+.programa {
+	text-align: left;
 }
+
 .bodyPad {
-    padding-top: 50px;
+	padding-top: 50px;
 }
 
 .time1 {
-    font-size: 20px;
-    
-    color: #45B445;
-    font-weight: 800;
+	font-size  : 20px;
+
+	color      : #45B445;
+	font-weight: 800;
 }
 
-.remainingTime{
-    color:#FF851B;
+.remainingTime {
+	color: #FF851B;
 }
 
 #logo {
-    height: 50px;
-    padding-left: 16px;
+	height      : 50px;
+	padding-left: 16px;
 }
 
-table{
-    background:#FFFFFF;
+table {
+	background: #FFFFFF;
 }
 
-body{
-    background:#F4F4F4;
+#bar {
+	width: 100%;
+}
+
+body {
+	background: #F4F4F4;
 }
