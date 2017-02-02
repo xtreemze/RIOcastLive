@@ -19,22 +19,12 @@ try {
 */
 // Create Audio Object and Decalre Properties
 var audioElement = new Audio();
-var smartSource = function () {
-  if (audioElement.canPlayType("audio/mpeg")) {
-    audioElement.setAttribute("src", "http://192.30.164.78:8000/bahia");
-    $("#mp3")
-      .addClass("active");
-  } else if (audioElement.canPlayType("audio/ogg")) {
-    audioElement.setAttribute("src", "http://192.30.164.78:8000/airtime");
-    $("#ogg")
-      .addClass("active");
-  }
-};
-smartSource();
+
 audioElement.controls = false;
 audioElement.autoplay = false;
 audioElement.crossOrigin = "anonymous";
 audioElement.id = "a";
+audioElement.src = "http://192.30.164.78:8000/bahia"
 /*
  ██████  ██████  ███    ██ ████████ ██████   ██████  ██      ███████
 ██      ██    ██ ████   ██    ██    ██   ██ ██    ██ ██      ██
@@ -53,20 +43,7 @@ $("#pause")
     $("#bar")
       .removeClass("active");
   });
-$("#reconnect")
-  .click(function () {
-    $("#bar")
-      .removeClass("active")
-      .removeClass("progress-bar-success")
-      .addClass("progress-bar-warning");
-    $("#pause")
-      .removeClass("btn-warning");
-    smartSource();
-    checkSource();
-    $("#play")
-      .removeClass("btn-success");
-    play();
-  });
+
 var play = function () {
   audioElement.play();
   $("#pause")
@@ -130,7 +107,7 @@ var analyser = context.createAnalyser();
 analyser.fftSize = 256;
 analyser.smoothingTimeConstant = 0.2;
 analyser.minDecibels = -98
-analyser.maxDecibels = -32
+analyser.maxDecibels = -16
 // draw the analyser to the canvas
 /*
 ██████  ██████   █████  ██     ██
@@ -145,8 +122,8 @@ function freqAnalyser() {
   var average;
   var bar_width;
   var scaled_average;
-  var num_bars = 16;
-  var data = new Uint8Array(128);
+  var num_bars = 10;
+  var data = new Uint8Array(12);
   analyser.getByteFrequencyData(data);
   if (!analyser) {
     $("#vis")
@@ -160,7 +137,7 @@ function freqAnalyser() {
   gradient.addColorStop(0.98, "#f44336");
   canvasCtx.fillStyle = gradient;
   // DRAW Individual Bars
-  var bin_size = Math.floor((data.length - 40) / num_bars);
+  var bin_size = Math.floor((data.length) / num_bars);
   for (var i = 0; i < num_bars; i++) {
     sum = 0;
     for (var j = 0; j < bin_size; j++) {
@@ -179,27 +156,7 @@ function freqAnalyser() {
 ██  ██ ██ ██   ██  ██  ██  ██ ██    ██ ██   ██    ██    ██ ██    ██ ██  ██ ██
 ██   ████ ██   ██   ████   ██  ██████  ██   ██    ██    ██  ██████  ██   ████
 */
-// NAVIGATION Buttons change audio source format between OGG and MP3
-// function sourceChange (soundFormat) {
-//   if ($('#a')[0].src !== soundFormat) {
-//     $('#a')[0].src = soundFormat
-//     $('#a')[0].play()
-//   }
-//   checkSource()
-// }
-var checkSource = function () {
-  if ($("#a")[0].src === "http://192.30.164.78:8000/rio") {
-    $("#mp3")
-      .addClass("active");
-    $("#ogg")
-      .removeClass("active");
-  } else if ($("#a")[0].src === "http://192.30.164.78:8000/airtime") {
-    $("#mp3")
-      .removeClass("active");
-    $("#ogg")
-      .addClass("active");
-  }
-};
+
 
 function respondCanvas() {
   canvas.width = $("#bottom")
